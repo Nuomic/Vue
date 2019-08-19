@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <!-- <style lang="">
+        .activated{
+            color: red
+        }
+    </style> -->
+</head>
+
+<body>
+    <div id="app">
+        <!-- <div @click="handleDivClick" :class="{activated:isActivated}">Hello</div> -->
+        <!-- <div @click="handleDivClick" :class="[activated,activatedOne]">Hello</div> -->
+        <!-- <div :style="styleObj" @click="handleDivClick">Hello</div> -->
+        <div :style="[styleObj,{fontSize:'20px'}]" @click="handleDivClick">Hello</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                // isActivated:""
+                // 
+                // activated:"",
+                // activatedOne:"activated-one"
+                styleObj: {
+                    color: "black"
+                }
+            },
+            methods: {
+                handleDivClick() {
+                    // this.isActivated = !this.isActivated
+                    // this.activated =this.activated ==="activated"?"": "activated"
+                    this.styleObj.color = this.styleObj.color === "red" ? "black" : "red"
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

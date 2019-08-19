@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- key值唯一 且最好不要用index -->
+        <!-- template占位符
+        <div v-for="(item, index) in list" :key="index">
+            {{item}} -----{{index}}
+        </div> -->
+        <div v-for="(item,key, index) in userInfo" :key="index">
+            {{item}}----{{key}}--{{index}}
+        </div>
+    </div>
+    <script>
+        // push pop shift unshift splice sort reverse
+        // 加内容用以上api或直接更改引用
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                userInfo: {
+                    name: "dell",
+                    age: 28,
+                    gender: "male",
+                    salary: "secret"
+                }
+                // list:[
+                //     "hello",
+                //     "dell",
+                //     "nice",
+                //     "to",
+                //     "meet",
+                //     "you"
+                // ]
+            },
+        })
+    </script>
+</body>
+
+</html>

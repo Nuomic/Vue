@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的js动画与velocity.js库</title>
+    <script src="../vue.js"></script>
+    <script src="../Velocity.js"></script>
+</head>
+<style>
+</style>
+
+<body>
+    <div id="app">
+        <transition name="fade" @after-enter="handleAfterEnter" @enter="handleEnter" @before-enter="handleBeforeEnter">
+            <div v-if="show">Hello world</div>
+        </transition>
+
+        <button @click="handleClick">click</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                show: true
+            },
+            methods: {
+                handleClick() {
+                    this.show = !this.show
+                },
+                handleBeforeEnter: (el) => {
+                    el.style.opacity = 0;
+                },
+                handleEnter(el, done) {
+                    Velocity(el, { opacity: 1 }, {
+                        duration: 1000,
+                        complete:done
+                    })
+                },
+                handleAfterEnter(el) {
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

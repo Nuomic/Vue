@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{msg}}
+        <p>{{msg1}}</p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue',
+                another: 'another is Vue'
+            },
+            watch: { //监听属性 监听属性值变化 （异步场景）
+                msg: function (newval, oldval) {
+                    console.log('newval:', newval);
+                    console.log('oldval:', oldval)
+                }
+            },
+            computed: { //计算属性 可监听多个变量(必须在本实例中) （数据联动）
+                msg1: function () {
+                    return 'computed:' + this.msg + ',' +this.another
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 父组件通过属性的方式向子组件传值 -->
+        <!-- 子组件通过事件的方式向父组件传值  -->
+        <counter :count="0" @change="handleChange"></counter>
+        <counter :count="1"  @change="handleChange"></counter>
+        <div >{{total}}</div>
+    </div>
+    <script>
+        var counter ={
+            props:['count'],
+            data(){
+                return{
+                    number:this.count
+                }
+            },
+            template:'<div @click="handleClick">{{number}}</div>',
+            methods: {
+                handleClick(){
+                    console.log( this.number++)
+                    // 单向数据流 子组件不能直接操作父组件的数据
+                   this.$emit("change",1)
+                }
+            },
+        }
+        var vm = new Vue({
+            el: "#app",
+            components:{
+                counter:counter
+            },
+            data: {
+                total:1
+            },
+            methods: {
+                handleChange(step){
+                    this.total+=step
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
